@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Centered Full-Image Slider</title>
+  <title>7-Image Slider Centered</title>
   <style>
     body {
       margin: 0;
       display: flex;
-      justify-content: center; /* center slider horizontally */
-      align-items: center;     /* center slider vertically */
+      justify-content: center;
+      align-items: center;
       height: 100vh;
       background: #f4f4f4;
     }
@@ -20,6 +20,9 @@
       border-radius: 10px;
       border: 1px solid #ccc;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .slides {
@@ -27,11 +30,21 @@
       transition: transform 0.5s ease-in-out;
     }
 
-    .slides img {
+    .slide {
       width: 500px;
       height: 300px;
-      object-fit: contain; /* fully show image */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       flex-shrink: 0;
+      background: #000; /* optional: prevents white gaps if image smaller */
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* fully visible */
+      display: block;
     }
   </style>
 </head>
@@ -39,13 +52,13 @@
 
   <div class="slider">
     <div class="slides" id="slides">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg1.jpg" alt="Slide 1">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg2.jpg" alt="Slide 2">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg3.png" alt="Slide 3">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg4.jpg" alt="Slide 4">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg5.jpg" alt="Slide 5">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg6.jpg" alt="Slide 6">
-      <img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg7.jpg" alt="Slide 7">
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg1.jpg" alt="Slide 1"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg2.jpg" alt="Slide 2"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg3.png" alt="Slide 3"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg4.jpg" alt="Slide 4"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg5.jpg" alt="Slide 5"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg6.jpg" alt="Slide 6"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg7.jpg" alt="Slide 7"></div>
     </div>
   </div>
 
@@ -56,8 +69,8 @@
 
     setInterval(() => {
       index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(${-index * 500}px)`; // slide exactly 500px each time
-    }, 3000); // change image every 3 seconds
+      slides.style.transform = `translateX(${-index * 500}px)`;
+    }, 3000);
   </script>
 
 </body>
