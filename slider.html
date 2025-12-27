@@ -2,35 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Full-Image Slider</title>
+  <title>500x300 Slider</title>
   <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f4f4f4;
+    .slider {
+      width: 500px;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 10px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
     }
 
-    .slider {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      overflow: hidden;
-      border-radius: 10px;
-      position: relative;
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
     }
 
     .slides img {
-      width: 100%;
-      height: auto;
-      object-fit: contain; /* Entire image visible */
-      display: none;       /* Hide all images by default */
-    }
-
-    .slides img.active {
-      display: block;     /* Show only the active image */
+      width: 500px;
+      height: 300px;
+      object-fit: contain; /* scale images to fit */
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -38,22 +31,23 @@
 
   <div class="slider">
     <div class="slides" id="slides">
-      <img src="https://Mrari857.github.io/slider/bg1.jpg" alt="Slide 1" class="active">
+      <img src="https://Mrari857.github.io/slider/bg1.jpg" alt="Slide 1">
       <img src="https://Mrari857.github.io/slider/bg2.jpg" alt="Slide 2">
       <img src="https://Mrari857.github.io/slider/bg3.png" alt="Slide 3">
     </div>
   </div>
 
   <script>
-    const slides = document.querySelectorAll("#slides img");
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
     let index = 0;
 
     setInterval(() => {
-      slides[index].classList.remove("active");
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 3000); // Change image every 3 seconds
+      index = (index + 1) % totalSlides;
+      slides.style.transform = `translateX(${-index * 500}px)`;
+    }, 3000); // Slide every 3 seconds
   </script>
 
 </body>
 </html>
+
