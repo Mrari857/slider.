@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>9-Image Slider</title>
+  <title>Infinite 9-Image Slider</title>
   <style>
     body {
       margin: 0;
@@ -34,13 +34,13 @@
       justify-content: center;
       align-items: center;
       flex-shrink: 0;
-      background: #000; /* prevents white gaps */
+      background: #000;
     }
 
     .slide img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain; /* fully visible */
+      object-fit: contain;
       display: block;
     }
   </style>
@@ -49,6 +49,7 @@
 
   <div class="slider">
     <div class="slides" id="slides">
+      <!-- Clone first slide at the end for seamless loop -->
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg1.jpg" alt="Slide 1"></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg2.jpg" alt="Slide 2"></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg3.png" alt="Slide 3"></div>
@@ -58,6 +59,7 @@
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg7.jpg" alt="Slide 7"></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg8.jpg" alt="Slide 8"></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg9.jpg" alt="Slide 9"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg1.jpg" alt="Slide 1 Clone"></div>
     </div>
   </div>
 
@@ -66,13 +68,38 @@
     const totalSlides = slides.children.length;
     let index = 0;
 
-    setInterval(() => {
-      index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(${-index * 500}px)`; // slide exactly one image width
-    }, 3000); // 3 seconds per slide
+    // Preload all images
+    const images = slides.querySelectorAll("img");
+    let loadedCount = 0;
+
+    images.forEach(img => {
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === totalSlides) {
+          startSlider();
+        }
+      };
+      img.onerror = () => console.error("Failed to load:", img.src);
+    });
+
+    function startSlider() {
+      setInterval(() => {
+        index++;
+        slides.style.transition = "transform 0.5s ease-in-out";
+        slides.style.transform = `translateX(${-index * 500}px)`;
+
+        // If we reach the clone, jump back seamlessly
+        if (index === totalSlides - 1) {
+          setTimeout(() => {
+            slides.style.transition = "none";
+            slides.style.transform = `translateX(0px)`;
+            index = 0;
+          }, 500); // match transition duration
+        }
+      }, 3000);
+    }
   </script>
 
 </body>
 </html>
-
 
