@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Image Slider</title>
+  <title>Simple Slider</title>
   <style>
     body {
       margin: 0;
@@ -43,9 +43,9 @@
     const slides = document.getElementById("slides");
 
     setInterval(() => {
-      index = (index + 1) % 3;  // 3 images
+      index = (index + 1) % 3; // Total slides
       slides.style.transform = `translateX(${-index * 500}px)`;
-    }, 3000); // Change slide every 3 seconds
+    }, 3000); // Slide every 3 seconds
   </script>
 
 </body>
