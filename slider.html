@@ -4,52 +4,57 @@
   <meta charset="UTF-8">
   <title>11-Image Slider</title>
   <style>
-    body { margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#f4f4f4; }
-    .slider { width:500px; height:300px; overflow:hidden; border-radius:10px; border:1px solid #ccc; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
-    .slides { display:flex; transition:transform 0.5s ease-in-out; }
-    .slide { width:500px; height:300px; display:flex; justify-content:center; align-items:center; flex-shrink:0; background:#000; }
-    .slide img { max-width:100%; max-height:100%; object-fit:contain; display:block; }
+    .slider {
+      width: 500px;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 10px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 500px;
+      height: 300px;
+      object-fit: contain; /* ensures full image is visible */
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
 
-<div class="slider">
-  <div class="slides" id="slides">
-    <div class="slide"><img src="bg1.jpg" alt="1"></div>
-    <div class="slide"><img src="bg2.jpg" alt="2"></div>
-    <div class="slide"><img src="bg3.png" alt="3"></div>
-    <div class="slide"><img src="bg4.jpg" alt="4"></div>
-    <div class="slide"><img src="bg5.jpg" alt="5"></div>
-    <div class="slide"><img src="bg6.jpg" alt="6"></div>
-    <div class="slide"><img src="bg7.jpg" alt="7"></div>
-    <div class="slide"><img src="bg8.jpg" alt="8"></div>
-    <div class="slide"><img src="bg9.jpg" alt="9"></div>
-    <div class="slide"><img src="bg10.jpg" alt="10"></div>
-    <div class="slide"><img src="bg11.jpg" alt="11"></div>
-    <div class="slide"><img src="bg1.jpg" alt="1 Clone"></div> <!-- clone for seamless loop -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="https://Mrari857.github.io/slider/bg1.jpg" alt="Slide 1">
+      <img src="https://Mrari857.github.io/slider/bg2.jpg" alt="Slide 2">
+      <img src="https://Mrari857.github.io/slider/bg3.png" alt="Slide 3">
+      <img src="https://Mrari857.github.io/slider/bg4.jpg" alt="Slide 4">
+      <img src="https://Mrari857.github.io/slider/bg5.jpg" alt="Slide 5">
+      <img src="https://Mrari857.github.io/slider/bg6.jpg" alt="Slide 6">
+      <img src="https://Mrari857.github.io/slider/bg7.jpg" alt="Slide 7">
+      <img src="https://Mrari857.github.io/slider/bg8.jpg" alt="Slide 8">
+      <img src="https://Mrari857.github.io/slider/bg9.jpg" alt="Slide 9">
+      <img src="https://Mrari857.github.io/slider/bg10.jpg" alt="Slide 10">
+      <img src="https://Mrari857.github.io/slider/bg11.jpg" alt="Slide 11">
+    </div>
   </div>
-</div>
 
-<script>
-const slides = document.getElementById("slides");
-let index = 0;
-const totalSlides = slides.children.length;
+  <script>
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+    let index = 0;
 
-setInterval(() => {
-  index++;
-  slides.style.transition = "transform 0.5s ease-in-out";
-  slides.style.transform = `translateX(${-index * 500}px)`;
-
-  if (index === totalSlides - 1) {
-    setTimeout(() => {
-      slides.style.transition = "none";
-      slides.style.transform = "translateX(0px)";
-      index = 0;
-    }, 500);
-  }
-}, 3000);
-</script>
+    setInterval(() => {
+      index = (index + 1) % totalSlides;
+      slides.style.transform = `translateX(${-index * 500}px)`;
+    }, 3000); // Slide every 3 seconds
+  </script>
 
 </body>
 </html>
-
