@@ -2,16 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>7-Image Slider</title>
+  <title>Centered Full-Image Slider</title>
   <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center; /* center slider horizontally */
+      align-items: center;     /* center slider vertically */
+      height: 100vh;
+      background: #f4f4f4;
+    }
+
     .slider {
       width: 500px;
       height: 300px;
       overflow: hidden;
-      position: relative;
       border-radius: 10px;
-      margin: 50px auto;
       border: 1px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .slides {
@@ -22,7 +30,7 @@
     .slides img {
       width: 500px;
       height: 300px;
-      object-fit: contain;
+      object-fit: contain; /* fully show image */
       flex-shrink: 0;
     }
   </style>
@@ -48,8 +56,8 @@
 
     setInterval(() => {
       index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(${-index * 500}px)`;
-    }, 3000);
+      slides.style.transform = `translateX(${-index * 500}px)`; // slide exactly 500px each time
+    }, 3000); // change image every 3 seconds
   </script>
 
 </body>
