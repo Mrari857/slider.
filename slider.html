@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>7-Image Slider Centered</title>
+  <title>9-Image Slider</title>
   <style>
     body {
       margin: 0;
@@ -20,9 +20,6 @@
       border-radius: 10px;
       border: 1px solid #ccc;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .slides {
@@ -37,7 +34,7 @@
       justify-content: center;
       align-items: center;
       flex-shrink: 0;
-      background: #000; /* optional: prevents white gaps if image smaller */
+      background: #000; /* prevents white gaps */
     }
 
     .slide img {
@@ -59,6 +56,8 @@
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg5.jpg" alt="Slide 5"></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg6.jpg" alt="Slide 6"></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg7.jpg" alt="Slide 7"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg8.jpg" alt="Slide 8"></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Mrari857/slider/main/bg9.jpg" alt="Slide 9"></div>
     </div>
   </div>
 
@@ -69,7 +68,7 @@
 
     setInterval(() => {
       index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(${-index * 500}px)`;
+      slides.style.transform = `translateX(${-index * 500}px)`; // move exactly one slide width
     }, 3000);
   </script>
 
