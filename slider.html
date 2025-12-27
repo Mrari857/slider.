@@ -22,7 +22,7 @@
     .slides img {
       width: 500px;
       height: 300px;
-      object-fit: contain; /* ensures full image is visible */
+      object-fit: contain;
       flex-shrink: 0;
     }
   </style>
@@ -49,7 +49,7 @@
     setInterval(() => {
       index = (index + 1) % totalSlides;
       slides.style.transform = `translateX(${-index * 500}px)`;
-    }, 3000); // Slide every 3 seconds
+    }, 3000);
   </script>
 
 </body>
